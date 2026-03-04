@@ -1,12 +1,23 @@
 import streamlit as st
-from functions.notenberechner import percent_to_swiss_grade, weighted_average
-st.title("Unterseite A")
 
-st.write("Diese Seite ist eine Unterseite der Startseite.")
+# 1. YOUR FUNCTION (The Logic)
+def calculate_grade(score, total):
+    percentage = (score / total) * 100
+    if percentage >= 90: return "A"
+    if percentage >= 80: return "B"
+    return "C"
 
-with st.form("noten_form"):
-    prozent = st.number_input("Prozent (0-100)", min_value=0.0, max_value=100.0, step=0.1, key="percent")
-    st.text_input("Noten (1.0-6.0, durch Komman getrennt)", key="grades")
-    st.write(percent_to_swiss_grade(prozent))
+# 2. THE VIEW (The UI)
+st.title("My Grade App")
 
-   st.form_submit_button("Berechnen")
+# Create the inputs
+user_score = st.number_input("Enter Score")
+max_score = st.number_input("Enter Max Points", value=100)
+
+# Trigger the function with a button
+if st.button("Calculate"):
+    # Call your function using the variables from the widgets
+    result = calculate_grade(user_score, max_score)
+    
+    # Display the result
+    st.write(f"Your final grade is: **{result}**")
