@@ -21,3 +21,15 @@ if st.button("Calculate"):
     
     # Display the result
     st.write(f"Your final grade is: **{result}**")
+
+    with st.form("grade_form"):
+    score = st.number_input("Score")
+    total = st.number_input("Total")
+    
+    # The submit button
+    submitted = st.form_submit_button("Calculate")
+    
+    if submitted:
+        # Only runs once the button is clicked
+        final_grade = calculate_grade(score, total)
+        st.success(f"Done! Grade: {final_grade}")
