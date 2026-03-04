@@ -5,7 +5,9 @@ def calculate_grade(score, total):
     percentage = (score / total) * 100
     if percentage >= 90: return "A"
     if percentage >= 80: return "B"
-    return "C"
+    if percentage >= 70: return "C"
+    if percentage >= 60: return "D" 
+    if percentage < 60: return "F"
 
 # 2. THE VIEW (The UI)
 st.title("My Grade App")
@@ -21,15 +23,3 @@ if st.button("Calculate"):
     
     # Display the result
     st.write(f"Your final grade is: **{result}**")
-
-    with st.form("grade_form"):
-    score = st.number_input("Score")
-    total = st.number_input("Total")
-    
-    # The submit button
-    submitted = st.form_submit_button("Calculate")
-    
-    if submitted:
-        # Only runs once the button is clicked
-        final_grade = calculate_grade(score, total)
-        st.success(f"Done! Grade: {final_grade}")
