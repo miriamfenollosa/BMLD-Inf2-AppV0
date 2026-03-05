@@ -1,3 +1,6 @@
+import streamlit as st
+from views.notenberechner import berechne_note
+
 st.title("Schweizer Notenrechner")
 
 punkte = st.number_input("Erreichte Punkte", min_value=0, step=1)
