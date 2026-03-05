@@ -1,17 +1,8 @@
-import streamlit as st
+st.title("Schweizer Notenrechner")
 
-st.set_page_config(page_title="Notenberechner (CH)")
+punkte = st.number_input("Erreichte Punkte", min_value=0, step=1)
+max_punkte = st.number_input("Maximale Punkte", min_value=1, step=1)
 
-st.title("Notenberechner (Schweizer System)")
+note = berechne_note(punkte, max_punkte)
 
-score = st.number_input("Erreichte Punkte", min_value=0.0, value=0.0, format="%.2f")
-total = st.number_input("Maximale Punktzahl", min_value=1.0, value=100.0, format="%.2f")
-
-if total <= 0:
-    st.error("Maximale Punktzahl muss grösser als 0 sein.")
-elif score < 0:
-    st.error("Erreichte Punkte dürfen nicht negativ sein.")
-else:
-    grade = 1.0 + (score / total) * 5.0
-    grade = max(1.0, min(6.0, grade))
-    st.write("Note:", round(grade, 1))
+st.write(f"Deine Note: {note}")
