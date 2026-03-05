@@ -7,7 +7,7 @@ def calculate_grade(score, total):
     if percentage >= 80: return "B"
     if percentage >= 70: return "C"
     if percentage >= 60: return "D" 
-    if percentage < 60: return "F"
+    if percentage < 60: return "F"s
 
 # 2. THE VIEW (The UI)
 st.title("My Grade App")
