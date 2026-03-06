@@ -1,5 +1,5 @@
 import streamlit as st
-from views.notenberechner import berechne_note
+from functions.notenberechner import berechne_note
 
 st.title("Schweizer Notenrechner")
 

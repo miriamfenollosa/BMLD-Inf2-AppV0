@@ -1,20 +1,22 @@
 import streamlit as st
-from functions.notenberechner import berechne_note
+import views.home  # Hier importieren wir das ganze Home-Modul
 
-st.sidebar.title("Navigation")
-seite = st.sidebar.radio("Wähle eine Seite", ["Startseite", "Notenrechner"])
+tab1, tab2 = st.tabs(["🏠 Home", "Notenrechner"])
 
-if seite == "Startseite":
-    st.title("Willkommen zu meiner App")
-    st.write("Hier findest du eine Übersicht über die Funktionen dieser Anwendung. Sie hilft dir, deine Punktzahlen nach dem Schweizer Schulsystem zu berechnen. Wähle dazu die entsprechende Seite in der Navigation.")
-    # Hier kannst du weitere Inhalte einfügen, z.B. Bilder oder Links.
+with tab1:
+    views.home.display()  # Wir rufen eine Funktion aus home.py auf, die den Inhalt rendert
 
-elif seite == "Notenrechner":
-    st.title("Schweizer Notenrechner")
+with tab2:
+    import streamlit as st
+    from functions.notenberechner import berechne_note
 
-    punkte = st.number_input("Erreichte Punkte", min_value=0, step=1)
-    max_punkte = st.number_input("Maximale Punkte", min_value=1, step=1)
+    st.title("Notenrechner")
 
-    note = berechne_note(punkte, max_punkte)
+    with st.form("noten_form"):
+        punkte = st.number_input("Erreichte Punkte", min_value=0)
+        max_punkte = st.number_input("Maximale Punkte", min_value=1)
+        submit = st.form_submit_button("Note berechnen")
 
-    st.write(f"Deine Note: {note}")
+    if submit:
+        note = berechne_note(punkte, max_punkte)
+        st.success(f"Deine Note ist: {note}")
