@@ -3,5 +3,4 @@ def berechne_note(punkte, max_punkte):
         return "Maximale Punktzahl darf nicht 0 sein"
     
     prozent = (punkte / max_punkte) * 5 + 1
-    note = round(prozent, 1)
-    return note
+    return round(prozent, 1)
