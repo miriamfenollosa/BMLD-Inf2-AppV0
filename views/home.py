@@ -1,7 +1,8 @@
 import streamlit as st
 
 def display():
-    st.title("Meine erste Streamlit App")
+    st.title("Unsere Notenrechner-App")
+    st.write("Willkommen zu unserer Notenrechner-App! Hier könnt ihr eure Noten berechnen, indem ihr eure Punktzahl und die maximale Punktzahl eingebt.")
 
 # !! WICHTIG: Eure Emails müssen in der App erscheinen!!
 
