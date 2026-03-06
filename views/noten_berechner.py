@@ -5,10 +5,11 @@ def main():
 
     st.title("Notenrechner (nach Schweizer Notensystem)")
 
-    st.write("Gib deine erreichten Punkte und die maximale Punktzahl ein, um deine Note zu berechnen.")
-
     st.markdown("**Hinweis:** Die Note wird nach dem Schweizer Notensystem berechnet, wobei 1 die schlechteste Note und 6 die beste Note ist.")
-
+    
+    
+    st.write("Gib deine erreichten Punkte und die maximale Punktzahl ein, um deine Note zu berechnen.")
+    
     punkte = st.number_input("Erreichte Punkte", min_value=0, step=1)
     max_punkte = st.number_input("Maximale Punkte", min_value=1, step=1)
 
