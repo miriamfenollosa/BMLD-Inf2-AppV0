@@ -16,4 +16,4 @@ def main():
     if st.button("Note berechnen"):
         note = berechne_note(punkte, max_punkte)
         st.success(f"Deine Note ist: {note}")
-    st.dataframe({session_state: st.session_state})
+    st.dataframe(st.session_state['data_df'])

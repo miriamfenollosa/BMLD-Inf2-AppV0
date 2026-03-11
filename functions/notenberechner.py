@@ -4,3 +4,5 @@ def berechne_note(punkte, max_punkte):
     
     prozent = (punkte / max_punkte) * 5 + 1
     return round(prozent, 1)
+
+    return round(prozent, 1)
