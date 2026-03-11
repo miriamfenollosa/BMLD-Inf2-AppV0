@@ -10,6 +10,6 @@ def berechne_note(punkte, max_punkte):
     prozent = (punkte / max_punkte) * 5 + 1
 
     return {
-    "timestamp": datetime.now(pytz.timezone('Europe/Zurich')).isoformat(),
+    "timestamp": datetime.now(pytz.timezone('Europe/Zurich')),
     "note": round(prozent, 1)
     }
