@@ -16,4 +16,6 @@ def main():
     if st.button("Note berechnen"):
         note = berechne_note(punkte, max_punkte)
         st.success(f"Deine Note ist: {note}")
+         # --- NEW CODE to update history in session state and display it ---
+    st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([result])])
     st.dataframe(st.session_state['data_df'])
