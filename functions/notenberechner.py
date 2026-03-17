@@ -5,4 +5,4 @@ def berechne_note(punkte, max_punkte):
         return {"note": None, "timestamp": datetime.datetime.now()}
     prozent = (punkte / max_punkte) * 5 + 1
     note = round(prozent, 1)
-    return {"note": note, "timestamp": datetime.datetime.now()}
+    return {"timestamp": datetime.datetime.now(), "note": note}
