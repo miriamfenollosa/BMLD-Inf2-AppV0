@@ -20,16 +20,12 @@ def main():
         result = berechne_note(punkte, max_punkte)
         st.success(f"Deine Note ist: {result['note']}")
         
-        # Speichere das Dictionary im Session State
-        st.session_state['data'].append(result)
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([result])])
 
     # --- CODE UPDATE: save data to data manager ---
     data_manager = DataManager()
     data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
     # --- END OF CODE UPDATE ---
 
-    # Zeige die Tabelle an, wenn es Daten gibt
-    if st.session_state['data']:
-        df = pd.DataFrame(st.session_state['data'])
-        st.dataframe(df)
+st.dataframe(st.session_state['data_df'])
 

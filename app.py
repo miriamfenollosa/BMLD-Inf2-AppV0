@@ -24,11 +24,6 @@ if 'data_df' not in st.session_state:
     )
 # --- END OF CODE UPDATE ---
 
-# --- NEW CODE: initialize empty data frame if not already present ---
-if 'data_df' not in st.session_state:
-    st.session_state['data_df'] = pd.DataFrame()
-# --- END OF NEW CODE ---
-
 tab1, tab2 = st.tabs(["🏠 Home", "Notenrechner"])
 
 with tab1:
