@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+from utils.data_manager import DataManager
 from functions.notenberechner import berechne_note
 
 def main():
@@ -22,7 +23,13 @@ def main():
         # Speichere das Dictionary im Session State
         st.session_state['data'].append(result)
 
+    # --- CODE UPDATE: save data to data manager ---
+    data_manager = DataManager()
+    data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
+    # --- END OF CODE UPDATE ---
+
     # Zeige die Tabelle an, wenn es Daten gibt
     if st.session_state['data']:
         df = pd.DataFrame(st.session_state['data'])
         st.dataframe(df)
+
