@@ -31,4 +31,12 @@ def main():
     # --- END OF CODE UPDATE ---
 
 st.dataframe(st.session_state['data_df'])
+noten = [int(wert) for wert in [5, 4, 6, 5]]  # oder aus der App gesammelt
+labels = ["A", "B", "C", "D"]
+
+plt.figure(figsize=(7, 4))
+plt.plot(labels, noten, marker="o", linestyle="-", color="magenta")
+plt.title("Meine Daten als Linie")
+plt.savefig("noten_linien.png")
+plt.show()
 
