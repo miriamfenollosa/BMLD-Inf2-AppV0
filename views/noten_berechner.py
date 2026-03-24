@@ -1,5 +1,7 @@
 import pandas as pd
 import streamlit as st
+if 'data_df' not in st.session_state:
+    st.session_state['data_df'] = pd.DataFrame()
 from utils.data_manager import DataManager
 from functions.notenberechner import berechne_note
 
