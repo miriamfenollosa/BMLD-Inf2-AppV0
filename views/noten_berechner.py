@@ -1,8 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
-if 'data_df' not in st.session_state:
-    st.session_state['data_df'] = pd.DataFrame()
+
 from utils.data_manager import DataManager
 from functions.notenberechner import berechne_note
 
@@ -15,9 +14,20 @@ def main():
     
     punkte = st.number_input("Erreichte Punkte", min_value=0, step=1)
     max_punkte = st.number_input("Maximale Punkte", min_value=1, step=1)
+    if 'data_df' not in st.session_state:
+        st.session_state['data_df'] = pd.DataFrame()
 
-    if 'data' not in st.session_state:
-        st.session_state['data'] = []
+        noten = [int(wert) for wert in [5, 4, 6, 5]]  # oder aus der App gesammelt
+        labels = ["A", "B", "C", "D"]
+
+        plt.figure(figsize=(7, 4))
+        plt.plot(labels, noten, marker="o", linestyle="-", color="magenta")
+        plt.title("Meine Daten als Linie")
+        plt.savefig("noten_linien.png")
+        plt.show()
+
+    #if 'data' not in st.session_state:
+     #   st.session_state['data'] = []
 
     if st.button("Note berechnen"):
         result = berechne_note(punkte, max_punkte)
@@ -25,18 +35,13 @@ def main():
         
         st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([result])])
 
-    # --- CODE UPDATE: save data to data manager ---
-    data_manager = DataManager()
-    data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
-    # --- END OF CODE UPDATE ---
+        # --- CODE UPDATE: save data to data manager ---
+        data_manager = DataManager()
+        data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
+        # --- END OF CODE UPDATE ---
 
-st.dataframe(st.session_state['data_df'])
-noten = [int(wert) for wert in [5, 4, 6, 5]]  # oder aus der App gesammelt
-labels = ["A", "B", "C", "D"]
+        st.line_chart(st.session_state['data_df'].set_index('timestamp')['note'])
 
-plt.figure(figsize=(7, 4))
-plt.plot(labels, noten, marker="o", linestyle="-", color="magenta")
-plt.title("Meine Daten als Linie")
-plt.savefig("noten_linien.png")
-plt.show()
+        st.dataframe(st.session_state['data_df'])
+
 

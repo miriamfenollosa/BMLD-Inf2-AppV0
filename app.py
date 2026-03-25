@@ -2,6 +2,7 @@ import streamlit as st
 import views.home
 import views.noten_berechner
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # --- NEW CODE: import and initialize data manager and login manager ---
 from utils.data_manager import DataManager
